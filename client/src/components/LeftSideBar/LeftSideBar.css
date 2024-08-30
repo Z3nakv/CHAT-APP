@@ -1,0 +1,139 @@
+.ls {
+    background: #001030;
+    color: var(--white-color);
+    height: 75dvh;
+}
+
+.ls-top {
+    padding: 2rem;
+}
+
+.ls-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .logo {
+        max-width: 14rem;
+    }
+
+    & .menu {
+        position: relative;
+        padding: 1rem 0;
+
+        & .sub-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 13rem;
+            padding: 2rem;
+            border-radius: .5rem;
+            background-color: var(--white-color);
+            color: var(--black-color);
+            display: none;
+
+            & hr {
+                border: none;
+                height: .1rem;
+                background: #a4a4a4;
+                margin: .8rem 0;
+            }
+
+            & p {
+                cursor: pointer;
+                font-size: 1.4rem;
+            }
+        }
+
+        &:hover .sub-menu {
+            display: block;
+        }
+    }
+
+    & .menu img {
+        height: 2rem;
+        opacity: .6;
+        cursor: pointer;
+    }
+}
+
+.ls-search {
+    background-color: #002670;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+
+    & img {
+        width: 1.6rem;
+    }
+
+    & input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--white-color);
+        font-size: 1.1rem;
+    }
+
+    & input::placeholder {
+        color: #c8c8c8;
+    }
+}
+
+.ls-list {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    overflow-y: scroll;
+}
+
+.friends { 
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+
+    & img {
+        width: 3.5rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
+
+    & div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & span {
+        color: #9f9f9f;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: var(--form-blue-color);
+
+        & span {
+            color: var(--white-color);
+        }
+    }
+}
+
+.friends.border {
+    & img {
+        border: 3px solid #07fff3;
+    }
+
+    & div span {
+        color: #07fff3;
+    }
+}
+
+@media (max-width:900px ) { 
+    .ls {
+        width: 100%;
+    }
+}

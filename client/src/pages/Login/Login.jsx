@@ -5,7 +5,7 @@ import { signup, login, resetPass } from '../../config/firebase.js';
 
 const Login = () => {
 
-  const [currentState, setCurrentState] = useState("Sign Up");
+  const [currentState, setCurrentState] = useState("Login");
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('test@gmail.com');
   const [password, setPassword] = useState('123456');

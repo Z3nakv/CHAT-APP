@@ -19,7 +19,7 @@ const RightSideBar = () => {
     setMsgImages(tempVar);
   },[messages])
 
-  return chatUser 
+  return chatUser && chatUser 
   ? (
     <div className='rs'>
       <div className="rs-profile">
@@ -32,6 +32,7 @@ const RightSideBar = () => {
         <p>Media</p>
         <div>
           {
+            msgImages &&
             msgImages.map((url,index) => (
               <img onClick={()=>window.open(url)} key={index} src={url} alt="" />
             ))

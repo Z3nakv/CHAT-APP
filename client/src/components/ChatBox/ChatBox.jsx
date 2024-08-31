@@ -111,7 +111,6 @@ const ChatBox = () => {
       const unSub = onSnapshot(doc(db,"messages",messagesId),(res)=>{
         setMessages(res.data().messages.reverse())
         // console.log(res.data().messages.reverse());
-        
       })
       return () => {
         unSub();
@@ -119,7 +118,7 @@ const ChatBox = () => {
     }
   },[messagesId])
 
-  return chatUser ? (
+  return chatUser && chatUser ? (
     <div className={`chat-box ${chatVisible ? "" : "hidden"}`}>
       <div className="chat-user">
         <img src={chatUser.userData.avatar} alt="" />
@@ -132,7 +131,7 @@ const ChatBox = () => {
       </div>
 
       <div className="chat-msg">
-        {messages.map((msg, index) => (
+        { messages && messages.map((msg, index) => (
           <div key={index} className={msg.sId === userData.id ? "s-msg" : "r-msg"}>
             {msg["image"]
             ? <img className='msg-img' src={msg.image} alt="" />

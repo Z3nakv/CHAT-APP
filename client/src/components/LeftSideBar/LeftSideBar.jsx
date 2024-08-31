@@ -2,7 +2,7 @@ import './LeftSideBar.css';
 import assets from '../../assets/assets.js';
 import { useNavigate } from 'react-router-dom';
 import { arrayUnion, collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore';
-import { db } from '../../config/firebase.js';
+import { db, logout } from '../../config/firebase.js';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext.jsx';
 import { toast } from 'react-toastify';
@@ -22,12 +22,12 @@ const LeftSideBar = () => {
         setShowSearch(true);
         const userRef = collection(db, 'users');
         
-        const q = query(userRef, where("username","==",input.toLowerCase()));
+        const q = query(userRef, where("name","==",input.toLowerCase()));
         const querySnap = await getDocs(q);
         
         if( !querySnap.empty && querySnap.docs[0].data().id !== userData.id ){
           let userExists = false;
-          chatData.map(user => {
+          chatData && chatData.map(user => {
             if(user.rId === querySnap.docs[0].data().id){
               userExists = true;
             }
@@ -136,7 +136,7 @@ const LeftSideBar = () => {
             <div className="sub-menu">
               <p onClick={()=>navigate('/profile')}>Edit Profile</p>
               <hr />
-              <p>Logout</p>
+              <p onClick={()=>logout()}>Logout</p>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ const LeftSideBar = () => {
           <p>{user.name}</p>
         </div>
         :
-        chatData.map((item,index) => (
+        chatData && chatData.map((item,index) => (
           <div onClick={()=>setChat(item)} key={index} className={`friends ${item.messageSeen || item.messageId === messagesId ? "" : "border" }`}>
             <img src={item.userData.avatar} alt="" />
             <div>
